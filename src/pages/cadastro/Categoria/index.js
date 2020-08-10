@@ -3,37 +3,18 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
 
 function CadastroCategoria() {
-  const [categorias, setCategorias] = useState([]);
-
   const valoresIniciais = {
-    nome: '',
+    titulo: '',
     descricao: '',
     cor: '',
   };
 
-  const [values, setValues] = useState(valoresIniciais);
+  const { handleChange, values, clearForm } = useForm(valoresIniciais);
 
-  function setValue(chave, valor) {
-    setValues({
-      ...values,
-      [chave]: valor, // ex: nome: Filmes
-    });
-  }
-
-  function handleChange(infosDoEvento) {
-    // console.log('[values]', values);
-    // console.log('[infosDoEvento.target,value]', infosDoEvento.target.value);
-    // setNomeDaCategoria(infosDoEvento.target.value);
-    // const { getAttribute, value } = infosDoEvento.target; deu bad
-    setValue(
-      infosDoEvento.target.getAttribute('name'),
-      infosDoEvento.target.value,
-      // getAttribute('name'), deu bad
-      // value, deu bad
-    );
-  }
+  const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     const URL_CAT = window.location.hostname.includes('localhost')
@@ -46,49 +27,30 @@ function CadastroCategoria() {
           ...resposta,
         ]);
       });
-    /*
-    setTimeout(() => {
-      setCategorias([
-        ...categorias,
-        {
-          id: 1,
-          nome: 'Front End',
-          descricao: 'Uma categoria bacana',
-          cor: '#6bd1ff',
-        },
-        {
-          id: 2,
-          nome: 'Back End',
-          descricao: 'Outra categoria bacana',
-          cor: '#6bd1ff',
-        },
-      ]);
-    }, 4 * 1000); */
   }, []);
 
   return (
     <PageDefault>
       <h1>
         Cadastro de Categoria:
-        {values.nome}
+        {values.titulo}
       </h1>
 
-      <form /* style={{background: values.cor}} */ onSubmit={function handleSubmit(infosDoEvento) {
+      <form onSubmit={function handleSubmit(infosDoEvento) {
         infosDoEvento.preventDefault();
-        // console.log('Você tentou enviar o form né?');
         setCategorias([
           ...categorias,
           values,
         ]);
 
-        setValues(valoresIniciais);
+        clearForm();
       }}
       >
 
-        <FormField // novo : movido para components/FormField/index.js
+        <FormField
           label="Nome da Categoria"
-          name="nome"
-          value={values.nome}
+          name="titulo"
+          value={values.titulo}
           onChange={handleChange}
         />
 
@@ -121,8 +83,8 @@ function CadastroCategoria() {
 
       <ul>
         {categorias.map((categoria) => (
-          <li key={`${categoria.nome}`}>
-            {categoria.nome}
+          <li key={`${categoria.titulo}`}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 // import {Link} from 'react-router-dom'
 
 // const Button = styled(Link)` para usar o link aqui dentro
