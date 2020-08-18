@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import Menu from '../Menu';
 import Footer from '../Footer';
@@ -15,6 +16,7 @@ const Main = styled.main`
     `};
 `;
 
+// eslint-disable-next-line react/prop-types
 function PageDefault({ children, paddingAll }) {
   return (
     <>
@@ -26,5 +28,9 @@ function PageDefault({ children, paddingAll }) {
     </>
   );
 }
+
+PageDefault.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 export default PageDefault;

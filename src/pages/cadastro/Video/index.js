@@ -28,8 +28,8 @@ function CadastroVideo() {
       });
   }, []);
 
-  console.log(categorias);
-  console.log(categoryTitles);
+  // console.log(categorias);
+  // console.log(categoryTitles);
 
   return (
     <PageDefault>
@@ -48,7 +48,7 @@ function CadastroVideo() {
           categoriaId: categoriaEscolhida.id,
         })
           .then(() => {
-            console.log('Cadastrou com sucesso!');
+            // console.log('Cadastrou com sucesso!');
             history.push('/');
           });
       }}
