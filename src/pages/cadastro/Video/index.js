@@ -14,10 +14,10 @@ function CadastroVideo() {
 
   const categoryTitles = categorias.map(({ titulo }) => titulo);
 
-  const { handleChange, values } = useForm({
-    titulo: 'Video padrão',
-    url: 'https://www.youtube.com/watch?v=jOAU81jdi-c',
-    categoria: 'Front End',
+  const { handleChange, values, clearForm } = useForm({
+    titulo: '',
+    url: '',
+    categoria: '',
   });
 
   useEffect(() => {
@@ -32,26 +32,29 @@ function CadastroVideo() {
   // console.log(categoryTitles);
 
   return (
-    <PageDefault>
+    <PageDefault className="BackColor">
       <h1>Cadastro de Vídeo</h1>
 
-      <form onSubmit={(event) => {
-        event.preventDefault();
-        // alert('Video cadastrado com sucesso!!!');
-        // eslint-disable-next-line arrow-body-style
-        const categoriaEscolhida = categorias.find((categoria) => {
-          return categoria.titulo === values.categoria;
-        });
-        VideosRepository.create({
-          titulo: values.titulo,
-          url: values.url,
-          categoriaId: categoriaEscolhida.id,
-        })
-          .then(() => {
-            // console.log('Cadastrou com sucesso!');
-            history.push('/');
+      <form
+        id="form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          // alert('Video cadastrado com sucesso!!!');
+          // eslint-disable-next-line arrow-body-style
+          const categoriaEscolhida = categorias.find((categoria) => {
+            return categoria.titulo === values.categoria;
           });
-      }}
+          VideosRepository.create({
+            titulo: values.titulo,
+            url: values.url,
+            categoriaId: categoriaEscolhida.id,
+          })
+            .then(() => {
+            // console.log('Cadastrou com sucesso!');
+              history.push('/');
+            });
+        }}
+        onReset={clearForm}
       >
         <FormField
           label="Título do Vídeo"
@@ -75,14 +78,26 @@ function CadastroVideo() {
           suggestions={categoryTitles}
         />
 
-        <Button>
+        <Button.B
+          btntype="Submit"
+          form="form"
+          type="Submit"
+        >
           Cadastrar
-        </Button>
+        </Button.B>
+
+        <Button.C
+          btntype="Reset"
+          form="form"
+          type="Reset"
+        >
+          Limpar
+        </Button.C>
       </form>
 
-      <Link to="/cadastro/categoria">
+      <Button.A as={Link} to="/cadastro/categoria">
         Cadastrar Categoria
-      </Link>
+      </Button.A>
     </PageDefault>
   );
 }

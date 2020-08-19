@@ -4,6 +4,7 @@ import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
+import './index.css';
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -36,15 +37,18 @@ function CadastroCategoria() {
         {values.titulo}
       </h1>
 
-      <form onSubmit={function handleSubmit(infosDoEvento) {
-        infosDoEvento.preventDefault();
-        setCategorias([
-          ...categorias,
-          values,
-        ]);
+      <form
+        id="form"
+        onSubmit={function handleSubmit(infosDoEvento) {
+          infosDoEvento.preventDefault();
+          setCategorias([
+            ...categorias,
+            values,
+          ]);
 
-        clearForm();
-      }}
+          clearForm();
+        }}
+        onReset={clearForm}
       >
 
         <FormField
@@ -70,9 +74,21 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
 
-        <Button>
+        <Button.B
+          btnType="Submit"
+          form="form"
+          type="Submit"
+        >
           Cadastrar
-        </Button>
+        </Button.B>
+
+        <Button.C
+          btnType="Reset"
+          form="form"
+          type="Reset"
+        >
+          Limpar
+        </Button.C>
       </form>
 
       {categorias.length === 0 && (
@@ -81,17 +97,32 @@ function CadastroCategoria() {
         </div>
       )}
 
-      <ul>
-        {categorias.map((categoria) => (
-          <li key={`${categoria.titulo}`}>
-            {categoria.titulo}
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Título</td>
+            <td>Descrição</td>
+            <td>Editar</td>
+            <td>Remover</td>
+          </tr>
+        </thead>
+        <tbody>
+          {categorias.map((categoria) => (
+            <tr key={categoria.id}>
+              <td>{categoria.id}</td>
+              <td>{categoria.titulo}</td>
+              <td>{categoria.link_extra ? categoria.link_extra.text : ''}</td>
+              <td><a href={categoria.id}>editar</a></td>
+              <td><a href={categoria.id}>remover</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <Link to="/">
+      <Button.A as={Link} to="/">
         Ir para home
-      </Link>
+      </Button.A>
     </PageDefault>
   );
 }

@@ -20,8 +20,9 @@ function Home() {
       });
   }, []);
 
+  const isHome = true;
   return (
-    <PageDefault paddingAll={0}>
+    <PageDefault paddingAll={0} isHome={isHome}>
       {dadosIniciais.length === 0 && <div>Loading...</div>}
 
       {dadosIniciais.map((categoria, indice) => {

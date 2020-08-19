@@ -5,7 +5,7 @@ import Menu from '../Menu';
 import Footer from '../Footer';
 
 const Main = styled.main`
-    background-color: var(--black);
+    background-color: #141414;
     color: var(--white);
     flex: 1;
     padding-top: 50px;
@@ -16,11 +16,10 @@ const Main = styled.main`
     `};
 `;
 
-// eslint-disable-next-line react/prop-types
-function PageDefault({ children, paddingAll }) {
+export default function PageDefault({ children, paddingAll, isHome }) {
   return (
     <>
-      <Menu />
+      <Menu isHome={isHome} />
       <Main paddingAll={paddingAll}>
         {children}
       </Main>
@@ -29,8 +28,12 @@ function PageDefault({ children, paddingAll }) {
   );
 }
 
-PageDefault.propTypes = {
-  children: PropTypes.element.isRequired,
+PageDefault.defaultProps = {
+  isHome: false,
 };
 
-export default PageDefault;
+PageDefault.propTypes = {
+  isHome: PropTypes.bool,
+  children: PropTypes.element.isRequired,
+  paddingAll: PropTypes.isRequired,
+};

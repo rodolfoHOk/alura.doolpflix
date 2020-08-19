@@ -1,0 +1,19 @@
+table {
+  border-collapse: collapse;
+}
+
+table, thead, tr, td {
+  border: 1px solid #2A7AE4;;
+}
+
+thead {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #272727;
+}
+
+td {
+  padding: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
