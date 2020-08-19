@@ -3,6 +3,7 @@
     {
       "id": 1,
       "titulo": "Front End",
+      "descricao": "Videos Front End",
       "cor": "#6BD1FF",
       "link_extra": {
         "text": "Formação de Front End na Alura",
@@ -12,6 +13,7 @@
     {
       "id": 2,
       "titulo": "Back End",
+      "descricao": "Videos Back End",
       "cor": "#00C86F",
       "link_extra": {
         "text": "Cursos de Back End na Alura",
@@ -21,6 +23,7 @@
     {
       "id": 3,
       "titulo": "Data Science e Inteligência Artificial",
+      "descricao": "Videos Data Science e IA",
       "cor": "#9cd33b",
       "link_extra": {
         "text": "Cursos de Data Science na Alura",
@@ -30,11 +33,13 @@
     {
       "id": 4,
       "titulo": "Filmes",
+      "descricao": "Filmes Preferidos",
       "cor": "orange"
     },
     {
       "id": 5,
       "titulo": "Games",
+      "descricao": "Jogos de Interesse",
       "cor": "red",
       "link_extra": {
         "text": "Formação de Jogos na Alura",
@@ -187,59 +192,6 @@
       "categoriaId": 5,
       "titulo": "Resident Evil 8",
       "url": "https://www.youtube.com/watch?v=JSapXD9vxYA"
-    },
-    {
-      "id": 25
-    },
-    {
-      "id": 26
-    },
-    {
-      "titulo": "Video padrão",
-      "url": "https://www.youtube.com/watch?v=jOAU81jdi-c",
-      "categoriaId": 1,
-      "id": 27
-    },
-    {
-      "titulo": "Video padrão",
-      "url": "https://www.youtube.com/watch?v=jOAU81jdi-c",
-      "categoriaId": {
-        "id": 2,
-        "titulo": "Back End",
-        "cor": "#00C86F",
-        "link_extra": {
-          "text": "Cursos de Back End na Alura",
-          "url": "https://www.alura.com.br/cursos-online-programacao"
-        }
-      },
-      "id": 28
-    },
-    {
-      "titulo": "Refazendo seu react do futuro p3",
-      "url": "https://www.youtube.com/watch?v=5MzOCxSWrrc",
-      "categoriaId": {
-        "id": 4,
-        "titulo": "Filmes",
-        "cor": "orange"
-      },
-      "id": 29
-    },
-    {
-      "titulo": "fdfsf",
-      "url": "https://www.youtube.com/watch?v=5MzOCxSWrrc",
-      "id": 30
-    },
-    {
-      "titulo": "testet",
-      "url": "https://www.youtube.com/watch?v=5MzOCxSWrrc",
-      "categoriaId": 4,
-      "id": 31
-    },
-    {
-      "titulo": "teste novo 1",
-      "url": "https://www.youtube.com/watch?v=5MzOCxSWrrc",
-      "categoriaId": 5,
-      "id": 32
     }
   ]
 }

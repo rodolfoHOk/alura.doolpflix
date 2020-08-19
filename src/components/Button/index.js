@@ -69,8 +69,30 @@ const C = styled.button`
     }
 `;
 
+const D = styled.button`
+    color: var(--white);
+    background-color: #666666;
+    border: none;
+    cursor: pointer;
+    padding: 0px 2px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    outline: none;
+    border-radius: 2px;
+    text-decoration: none;
+    margin: 1px 0px;
+    display: inline-block;
+    transition: opacity .3s;
+    &:hover,
+    &:focus {
+        opacity: .5;
+    }
+`;
+
 export default {
   A,
   B,
   C,
+  D,
 };

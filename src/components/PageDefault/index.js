@@ -30,10 +30,12 @@ export default function PageDefault({ children, paddingAll, isHome }) {
 
 PageDefault.defaultProps = {
   isHome: false,
+  paddingAll: '20px',
 };
 
 PageDefault.propTypes = {
   isHome: PropTypes.bool,
-  children: PropTypes.element.isRequired,
-  paddingAll: PropTypes.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  children: PropTypes.array.isRequired,
+  paddingAll: PropTypes.string,
 };

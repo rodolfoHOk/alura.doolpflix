@@ -22,7 +22,7 @@ function Home() {
 
   const isHome = true;
   return (
-    <PageDefault paddingAll={0} isHome={isHome}>
+    <PageDefault paddingAll="0px" isHome={isHome}>
       {dadosIniciais.length === 0 && <div>Loading...</div>}
 
       {dadosIniciais.map((categoria, indice) => {

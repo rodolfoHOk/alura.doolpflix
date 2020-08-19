@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
-import './index.css';
 import CategoriasRepository from '../../../repositories/categorias';
 
-function CadastroCategoria() {
+function EdicaoCategoria() {
+  const location = useLocation();
+
+  const { data } = location;
+  console.log(data);
+
+  // eslint-disable-next-line no-unused-vars
+  const [categorias, setCategorias] = useState([]);
+
   const valoresIniciais = {
-    titulo: '',
-    descricao: '',
-    cor: '',
+    titulo: data[1],
+    descricao: data[2],
+    cor: data[3],
   };
 
   const { handleChange, values, clearForm } = useForm(valoresIniciais);
-
-  const [categorias, setCategorias] = useState([]);
 
   const history = useHistory();
 
@@ -36,7 +41,8 @@ function CadastroCategoria() {
   return (
     <PageDefault>
       <h1>
-        Cadastro de Categoria:
+        Editar Categoria:
+        {'  '}
         {values.titulo}
       </h1>
 
@@ -44,14 +50,12 @@ function CadastroCategoria() {
         id="form"
         onSubmit={function handleSubmit(infosDoEvento) {
           infosDoEvento.preventDefault();
-          CategoriasRepository.create({
+          CategoriasRepository.edit({
             titulo: values.titulo,
             descricao: values.descricao,
             cor: values.cor,
-          })
-            .then(() => {
-              history.push('/cadastro/Video');
-            });
+          }, data[0]);
+          history.push('/cadastro/video');
         }}
         onReset={(event) => {
           event.preventDefault();
@@ -87,7 +91,7 @@ function CadastroCategoria() {
           form="form"
           type="Submit"
         >
-          Cadastrar
+          Editar
         </Button.B>
 
         <Button.C
@@ -99,54 +103,6 @@ function CadastroCategoria() {
         </Button.C>
       </form>
 
-      {categorias.length === 0 && (
-        <div>
-          Loading...
-        </div>
-      )}
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <td>Título</td>
-              <td>Descrição</td>
-              <td>Editar</td>
-              <td>Remover</td>
-            </tr>
-          </thead>
-          <tbody>
-            {categorias.map((categoria) => (
-              <tr key={categoria.id}>
-                <td>{categoria.titulo}</td>
-                <td>{categoria.descricao}</td>
-                <td>
-                  <Button.D onClick={(event) => {
-                    event.preventDefault();
-                    history.push({
-                      pathname: '/cadastro/editarcategoria',
-                      data: [categoria.id, categoria.titulo, categoria.descricao, categoria.cor],
-                    });
-                  }}
-                  >
-                    editar
-                  </Button.D>
-                </td>
-                <td>
-                  <Button.D onClick={(event) => {
-                    event.preventDefault();
-                    CategoriasRepository.remove(categoria, categoria.id);
-                    history.push('/cadastro/video');
-                  }}
-                  >
-                    remover
-                  </Button.D>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
       <Button.A as={Link} to="/">
         Ir para home
       </Button.A>
@@ -154,4 +110,4 @@ function CadastroCategoria() {
   );
 }
 
-export default CadastroCategoria;
+export default EdicaoCategoria;
